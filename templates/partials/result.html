@@ -1,0 +1,16 @@
+<li>
+<div class="row">
+    <div class="col-8">
+        <div class="accordion-heading" role="tab" id="headingOne">
+            <h3 class="card-title accordion-title">
+                <a class="accordion-msg waves-effect waves-dark">
+                {{result.subject}} - {{result.grade}}
+                </a>
+            </h3>
+        </div>
+    </div>
+    {% comment %} <div class="col-4">
+        <a href="{% url 'management:remove_from_cart' item.id %}" class="btn btn-danger btn-sm">Remove</a>
+    </div> {% endcomment %}
+</div>
+</li>

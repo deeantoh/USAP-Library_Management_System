@@ -1,0 +1,57 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Hover table card start -->
+            <div class="card">
+                <div class="card-block table-border-style">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr style="background-color:#4056ce;">
+                                    <th></th>
+                                    <th style="color:white;">Student Name</th>
+                                    <th style="color:white;">Book Title</th>
+                                    <th style="color:white;">Book Author</th>
+                                    <th style="color:white;">Date Borrowed</th>
+                                    <th style="color:white;">Has Returned</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for borrowing in borrowings %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{borrowing.student.firstname}} {{borrowing.student.lastname}}</td>
+                                    <td>{{borrowing.book.title}}</td>
+                                    <td>{{borrowing.book.author}}</td>
+                                    <td>{{borrowing.date_borrowed}}</td>
+                                    {% if borrowing.has_returned %}
+                                    <td><a href="" class="btn btn-success btn-sm waves-effect waves-light">Returned</a></td>
+                                    {% else %}
+                                    <td><a href="" class="btn btn-danger btn-sm waves-effect waves-light">Not Returned</a></td>
+                                    {% endif %}
+                                </tr>
+                                {% empty %}
+                                <p>No borowing Available yet. </p>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Hover table card end -->
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->
+
+{% endblock body %}

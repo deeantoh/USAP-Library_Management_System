@@ -1,0 +1,65 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Hover table card start -->
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                    <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                    {% endif %}
+                {% if message.tags == 'success' %}
+                    <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+            <div class="card">
+                <div class="card-block table-border-style">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr style="background-color:#4056ce;">
+                                    <th></th>
+                                    <th style="color:white;">Title</th>
+                                    <th style="color:white;">Author</th>
+                                    <th style="color:white;">Date Published</th>
+                                    <th style="color:white;">Quantity Available</th>
+                                    <th style="color:white;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for book in books %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{book.title}}</td>
+                                    <td>{{book.author}}</td>
+                                    <td>{{book.date_published}}</td>
+                                    <td>{{book.quantity}}</td>
+                                    <td>
+                                        <a href="{% url 'menu:book' book.id %}" class="btn btn-primary btn-sm waves-effect waves-light">Book</a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <p>No books Available yet. </p>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Hover table card end -->
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->
+
+{% endblock body %}

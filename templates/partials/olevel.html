@@ -1,0 +1,21 @@
+<form method="post" action ="{% url 'management:olevel_result' %}"> {% csrf_token %}
+    <div class="form-group row">
+        <div class="col-sm-5">
+            <label class="float-label">O Level Status:</label>
+            {{form.olevel}}
+        </div>
+        <div class="col-sm-5">
+            <label class="float-label">Choose Prefered Career:</label>
+            <select class="form-control" name="job">
+                {% for job in jobs %}
+                    <option value="{{job}}">{{job}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-2 align-self-end">
+            <button type="submit"
+            class="btn waves-effect waves-light btn-primary">Submit</button>
+        </div>
+
+    </div>
+</form>

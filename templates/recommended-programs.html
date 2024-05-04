@@ -1,0 +1,94 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Hover table card start -->
+            <form method="get" action="{% url 'management:search_progamme_from_carear' %}">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-4">
+                        <select class="form-control" name="query" id = "job">
+                            {% for job in carears %}
+                                <option value="{{job}}">{{job}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn waves-effect waves-light btn-success btn-sm">Search</button>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <br/>
+            {% if jobs %}
+            <div class="card">
+                <div class="card-header">
+                    <h5>Recommended Programmes for {{carear}}</h5>
+                    <div class="card-header-right">
+                        <ul class="list-unstyled card-option">
+                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                            <li><i class="fa fa-minus minimize-card"></i></li>
+                            <li><i class="fa fa-refresh reload-card"></i></li>
+                            <li><i class="fa fa-trash close-card"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-block table-border-style">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr style="background-color:#3447b1;">
+                                    <th></th>
+                                    <th style="color:rgb(248, 245, 245);">Programme</th>
+                                    <th style="color:rgb(250, 245, 245);">Duration</th>
+                                    <th style="color:rgb(252, 249, 249);">University</th>
+                                    <th style="color:rgb(252, 246, 246);">View Requirements</th>
+                                    <th style="color:rgb(250, 248, 248);">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for job in jobs %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{job.programme.name}}</td>
+                                    <td>{{job.programme.duration}}</td>
+                                    <td>{{job.programme.university}}</td>
+                                    <td>
+                                        <a href="{% url 'management:view_programme_reqirements' job.programme.id  %}" class="btn btn-primary btn-sm waves-effect waves-light">View Requirements</a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'management:log_applicant' job.programme.university.id %}" target="_blank" class="btn btn-success btn-sm waves-effect waves-light">Apply</a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <p>No programmes recommended.</p>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <!-- Hover table card end -->
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->
+
+{% endblock body %}
+
+{% block scripts %}
+    <script>
+        $("#job").select2();
+    </script>             
+{% endblock scripts %}
