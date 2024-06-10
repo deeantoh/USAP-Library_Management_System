@@ -28,7 +28,7 @@ class BorrowingAdmin(admin.ModelAdmin):
    
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ("title","author","date_added")
+    list_display = ("title","author","date_published")
     search_fields = ("title","author",)
 
 
