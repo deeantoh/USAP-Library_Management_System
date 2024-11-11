@@ -17,8 +17,20 @@
 <!-- Block footer -->
 {% block footer %} style="color: #d3d3d3;" {% endblock %}
 
-<!-- Page content -->
+<!-- Page content with background image -->
 {% block content %} 
+<style>b
+    body {
+        background-image: url('/static/usaplibrary.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
+    .card {
+        background: rgba(255, 255, 255, 0.8); /* semi-transparent background for readability */
+    }
+</style>
 <div class="container card p-3 border-dark mt-5" style="width: 30%;">
     <!-- Title -->
     <div class="text-center">USAP PORTAL</div>
